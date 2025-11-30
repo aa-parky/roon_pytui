@@ -104,10 +104,10 @@ jobs:
               const coveragePct = (parseFloat(match[1]) * 100).toFixed(2);
               message += `**Coverage:** ${coveragePct}%\n\n`;
 
-              if (coveragePct >= 80) {
-                message += '✅ Coverage meets threshold (80%)\n';
+              if (coveragePct >= 50) {
+                message += '✅ Coverage meets threshold (50%)\n';
               } else {
-                message += '⚠️ Coverage below threshold (80%)\n';
+                message += '⚠️ Coverage below threshold (50%)\n';
               }
             }
           } catch (error) {

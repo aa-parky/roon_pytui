@@ -86,7 +86,7 @@ pytest --cov=roon_pytui --cov-report=html
 - Place unit tests in `tests/unit/`
 - Place integration tests in `tests/integration/`
 - Use descriptive test names: `test_<what>_<condition>_<expected_result>`
-- Aim for 80%+ code coverage
+- Aim for good code coverage (minimum 50%, goal 80%)
 - Mock external dependencies (Roon API, file system, etc.)
 
 Example test:
@@ -110,7 +110,7 @@ def test_config_manager_loads_empty_config_when_file_missing():
 3. **Automated Checks**: The following will run automatically:
    - Tests on Python 3.8, 3.9, 3.10, 3.11, 3.12
    - Tests on Ubuntu, macOS, and Windows
-   - Code coverage check (must be ≥80%)
+   - Code coverage check (must be ≥50%)
    - Linting with ruff
    - Type checking with mypy
    - Security scanning
@@ -202,7 +202,7 @@ Types:
 
 ## Coverage Requirements
 
-- Minimum coverage: **80%**
+- Minimum coverage: **50%** (goal: 80%)
 - Coverage is checked in CI and will fail if below threshold
 - View coverage report: `pytest --cov=roon_pytui --cov-report=html` then open `htmlcov/index.html`
 

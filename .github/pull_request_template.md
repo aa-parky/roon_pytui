@@ -33,7 +33,7 @@ pytest tests/unit/test_new_feature.py
 - [ ] My changes generate no new warnings
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
-- [ ] Coverage remains at or above 80%
+- [ ] Coverage remains at or above 50%
 - [ ] I have run `ruff format .` and `ruff check .`
 - [ ] I have run `mypy src/roon_pytui`
 

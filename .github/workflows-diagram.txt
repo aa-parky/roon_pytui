@@ -56,7 +56,7 @@
 │                           QUALITY GATES                                  │
 ├─────────────────────────────────────────────────────────────────────────┤
 │ ✓ All tests pass (15 platform combinations)                            │
-│ ✓ Coverage ≥ 80%                                                        │
+│ ✓ Coverage ≥ 50% (goal: 80%)                                            │
 │ ✓ Ruff linting passes                                                   │
 │ ✓ Ruff formatting passes                                                │
 │ ✓ Mypy type checking passes                                             │

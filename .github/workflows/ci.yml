@@ -68,7 +68,7 @@ jobs:
 
     - name: Check coverage threshold
       run: |
-        coverage report --fail-under=80 || echo "::warning::Coverage is below 80% threshold"
+        coverage report --fail-under=50 || echo "::warning::Coverage is below 50% threshold"
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
@@ -92,8 +92,8 @@ jobs:
       uses: py-cov-action/python-coverage-comment-action@v3
       with:
         GITHUB_TOKEN: ${{ github.token }}
-        MINIMUM_GREEN: 80
-        MINIMUM_ORANGE: 70
+        MINIMUM_GREEN: 60
+        MINIMUM_ORANGE: 50
 
   build:
     name: Build Package

@@ -20,7 +20,7 @@ roon-pytui provides a lightweight, keyboard-driven interface to interact with yo
 - 🎨 Beautiful terminal UI with Textual framework
 - ⚡ Fast and lightweight
 - 🧩 Modular architecture
-- ✅ Comprehensive test coverage (80%+ target)
+- ✅ Test coverage (50%+ target, growing to 80%)
 
 ## Architecture
 

@@ -121,7 +121,7 @@ The codebase is organized into focused modules:
 
 ## Testing Strategy
 
-Target: 80%+ test coverage (enforced in pyproject.toml)
+Target: 50%+ test coverage (enforced in pyproject.toml), with goal to increase to 80%
 
 **Current Coverage**: ~27% (core modules tested, UI needs integration tests)
 
@@ -149,7 +149,7 @@ Target: 80%+ test coverage (enforced in pyproject.toml)
 **pyproject.toml settings**:
 - Python 3.8+ required
 - Line length: 100 characters (ruff)
-- Test coverage fails if < 80%
+- Test coverage fails if < 50% (goal: 80%)
 - Mypy strict mode enabled
 
 **Dependencies**:
@@ -185,7 +185,7 @@ The project has comprehensive GitHub Actions workflows:
 
 ### Key Features
 - All checks must pass before merging
-- Coverage must be ≥80% (enforced)
+- Coverage must be ≥50% (enforced, goal is 80%)
 - Codecov integration for coverage tracking
 - Dependabot for automated dependency updates (Mondays at 09:00)
 - Security scanning with bandit and safety

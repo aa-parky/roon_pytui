@@ -34,7 +34,7 @@ The project uses GitHub Actions for CI/CD with three main workflows:
 - **Runs on**: Ubuntu with Python 3.11
 - **Steps**:
   - Run pytest with coverage
-  - Check 80% coverage threshold
+  - Check 50% coverage threshold (goal: 80%)
   - Upload to Codecov
   - Generate HTML coverage report
   - Comment coverage on PRs
@@ -110,7 +110,7 @@ The project uses GitHub Actions for CI/CD with three main workflows:
   - Identifies changed Python files
   - Runs full test suite with coverage
   - Posts coverage results as PR comment
-  - Warns if coverage below 80%
+  - Warns if coverage below 50%
 
 #### `lint-changes`
 - **Purpose**: Lint only changed files for faster feedback
@@ -184,7 +184,7 @@ Badges automatically update based on workflow runs.
 
 ### Coverage Requirements
 
-- **Minimum**: 80% (enforced in `pyproject.toml`)
+- **Minimum**: 50% (enforced in `pyproject.toml`, goal: 80%)
 - **Check**: Runs on every PR and push
 - **Report**: HTML report available as artifact
 - **Visibility**: Coverage badge in README

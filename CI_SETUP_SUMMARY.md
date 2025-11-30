@@ -9,7 +9,7 @@ This document summarizes the CI/CD infrastructure created for roon-pytui.
 1. **`.github/workflows/ci.yml`** - Main CI Pipeline
    - Tests on Python 3.8, 3.9, 3.10, 3.11, 3.12
    - Tests on Ubuntu, macOS, Windows
-   - Coverage reporting with 80% threshold
+   - Coverage reporting with 50% threshold (goal: 80%)
    - Package build verification
    - Codecov integration
 
@@ -73,7 +73,7 @@ This document summarizes the CI/CD infrastructure created for roon-pytui.
 ### Testing
 - ✅ Multi-version testing (Python 3.8-3.12)
 - ✅ Multi-platform testing (Ubuntu, macOS, Windows)
-- ✅ Coverage tracking with 80% minimum threshold
+- ✅ Coverage tracking with 50% minimum threshold (goal: 80%)
 - ✅ Codecov integration
 - ✅ Test result artifacts
 
@@ -164,7 +164,7 @@ When you open a PR:
 All PRs must pass these checks before merging:
 
 - ✅ All tests pass on all platforms
-- ✅ Coverage ≥ 80%
+- ✅ Coverage ≥ 50% (goal: 80%)
 - ✅ Ruff linting passes
 - ✅ Ruff formatting passes
 - ✅ Mypy type checking passes

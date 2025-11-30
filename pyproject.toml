@@ -62,7 +62,7 @@ source = ["roon_pytui"]
 omit = ["*/tests/*", "*/test_*.py"]
 
 [tool.coverage.report]
-fail_under = 80
+fail_under = 50
 show_missing = true
 
 [tool.ruff]

@@ -46,13 +46,34 @@ class RoonDiscovery:
 
             # Create UDP socket for discovery
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP) as sock:
+                # Bind to any available address to allow sending
+                sock.bind(("", 0))
+
+                # Enable reuse of address
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+                # Try to enable reuse of port (not available on all platforms)
+                try:
+                    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+                except (AttributeError, OSError):
+                    # SO_REUSEPORT not available on this platform
+                    pass
+
                 # Send multicast query
                 sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 32)
-                sock.sendto(query_msg, (SOOD_MULTICAST_IP, SOOD_PORT))
+                try:
+                    sock.sendto(query_msg, (SOOD_MULTICAST_IP, SOOD_PORT))
+                    logger.debug("Sent multicast discovery query")
+                except OSError as e:
+                    logger.warning(f"Failed to send multicast query: {e}")
 
                 # Send broadcast query
                 sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-                sock.sendto(query_msg, ("<broadcast>", SOOD_PORT))
+                try:
+                    sock.sendto(query_msg, ("<broadcast>", SOOD_PORT))
+                    logger.debug("Sent broadcast discovery query")
+                except OSError as e:
+                    logger.warning(f"Failed to send broadcast query: {e}")
 
                 # Set timeout and listen for responses
                 sock.settimeout(timeout)
