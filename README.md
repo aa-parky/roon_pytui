@@ -1,5 +1,11 @@
 # roon-pytui
 
+[![CI](https://github.com/aa-parky/roon_pytui/actions/workflows/ci.yml/badge.svg)](https://github.com/aa-parky/roon_pytui/actions/workflows/ci.yml)
+[![Code Quality](https://github.com/aa-parky/roon_pytui/actions/workflows/code-quality.yml/badge.svg)](https://github.com/aa-parky/roon_pytui/actions/workflows/code-quality.yml)
+[![codecov](https://codecov.io/gh/aa-parky/roon_pytui/branch/main/graph/badge.svg)](https://codecov.io/gh/aa-parky/roon_pytui)
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 A beautiful, modular Terminal User Interface (TUI) for controlling Roon music servers, built with Python and Textual.
 
 ## Overview
