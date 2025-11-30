@@ -3,7 +3,7 @@
 import logging
 import os.path
 import socket
-from typing import List
+from typing import List, Set
 
 from roonapi.constants import SOOD_MULTICAST_IP, SOOD_PORT
 from roonapi.soodmessage import FormatException, SOODMessage
@@ -11,6 +11,41 @@ from roonapi.soodmessage import FormatException, SOODMessage
 from ..models.connection import ServerInfo
 
 logger = logging.getLogger(__name__)
+
+
+def _get_broadcast_addresses() -> Set[str]:
+    """Get broadcast addresses for all network interfaces.
+
+    Returns:
+        Set of broadcast addresses
+    """
+    import netifaces
+
+    broadcast_addrs = set()
+
+    # Add the generic broadcast address
+    broadcast_addrs.add("255.255.255.255")
+
+    try:
+        # Get all network interfaces
+        for interface in netifaces.interfaces():
+            try:
+                addrs = netifaces.ifaddresses(interface)
+                # Check for IPv4 addresses
+                if netifaces.AF_INET in addrs:
+                    for addr_info in addrs[netifaces.AF_INET]:
+                        # Get broadcast address if available
+                        if "broadcast" in addr_info:
+                            broadcast_addrs.add(addr_info["broadcast"])
+            except (ValueError, KeyError) as e:
+                logger.debug(f"Could not get broadcast address for {interface}: {e}")
+                continue
+
+    except Exception as e:
+        logger.warning(f"Failed to enumerate network interfaces: {e}")
+
+    logger.debug(f"Found broadcast addresses: {broadcast_addrs}")
+    return broadcast_addrs
 
 
 class RoonDiscovery:
@@ -67,13 +102,15 @@ class RoonDiscovery:
                 except OSError as e:
                     logger.warning(f"Failed to send multicast query: {e}")
 
-                # Send broadcast query
+                # Send broadcast queries to all network interfaces
                 sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-                try:
-                    sock.sendto(query_msg, ("<broadcast>", SOOD_PORT))
-                    logger.debug("Sent broadcast discovery query")
-                except OSError as e:
-                    logger.warning(f"Failed to send broadcast query: {e}")
+                broadcast_addrs = _get_broadcast_addresses()
+                for bcast_addr in broadcast_addrs:
+                    try:
+                        sock.sendto(query_msg, (bcast_addr, SOOD_PORT))
+                        logger.debug(f"Sent broadcast discovery query to {bcast_addr}")
+                    except OSError as e:
+                        logger.debug(f"Failed to send broadcast to {bcast_addr}: {e}")
 
                 # Set timeout and listen for responses
                 sock.settimeout(timeout)

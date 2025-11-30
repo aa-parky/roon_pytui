@@ -29,6 +29,7 @@ dependencies = [
     "roonapi>=0.1.0",
     "textual>=0.47.0",
     "pydantic>=2.0.0",
+    "netifaces>=0.11.0",
 ]
 
 [project.optional-dependencies]
